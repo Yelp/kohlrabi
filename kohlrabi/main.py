@@ -36,6 +36,9 @@ def get_application(config=None, debug=False, module=None):
                     break
         else:
             config = {'debug': debug}
+    elif isinstance(config, basestring):
+        with open(config) as cf:
+            config = yaml.load(cf)
 
     module = module or config.get('module', 'kohlrabi.modules.example')
 
