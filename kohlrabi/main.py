@@ -19,7 +19,7 @@ import kohlrabi.handlers
 
 log = logging.getLogger('kohlrabi')
 
-def get_application(config=None, debug=False, module=None):
+def get_application(config=None, debug=False, module=None, **kwargs):
     """Get a runnable instance of torando.web.Application"""
 
     base_path = os.path.join(os.path.dirname(__file__), '..')
