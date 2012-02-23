@@ -23,7 +23,7 @@ def bind(engine_path, import_module, create_tables=False):
             if v.__name__ not in globals().keys():
                 globals()[v.__name__] = v
 
-    if create_tables:
+    if engine_path.endswith(':memory:') or create_tables:
         metadata.create_all(engine)
 
 class _Base(object):
