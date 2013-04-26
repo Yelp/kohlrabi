@@ -35,7 +35,7 @@ class RequestHandler(tornado.web.RequestHandler):
         self.env = {
             'title': '(kohlrabi)',
             'uri': self.uri,
-            'jquery_url': '//ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js'
+            'jquery_url': '//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js'
         }
 
     def parse_date(self, date_string):
@@ -135,6 +135,7 @@ class Report(RequestHandler):
         self.env['date'] = date
         self.env['data'] = getattr(db, tbl).report_data(date)
         self.env['columns'] = getattr(db, tbl).html_table
+        self.env['first_column'] = getattr(db, tbl).html_table[0].display
         self.env['title'] = getattr(db, tbl).display_name + ' ' + date.strftime('%Y-%m-%d')
         self.render('report.html')
 
